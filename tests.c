@@ -812,7 +812,18 @@ void run_tests(struct test tests[], int n_tests) {
     bool all_success = true;
     int n_pass_tests = 0; int n_fail_tests = 0;
     for(int i = 0; i < n_tests; i++) {
+        printf("Testing:  ");
+        printf(tests[i].name);
+        printf("\n");
         test_success = (tests[i].test_f)();
+        printf(tests[i].name);
+        printf("\t");
+        if (test_success) {
+            printf("passed");
+        } else {
+            printf("failed");
+        }
+        printf("\n");
         n_pass_tests += test_success; n_fail_tests += 1 - test_success;
         _display_result(test_success, tests[i].name);
         all_success = all_success && test_success;
